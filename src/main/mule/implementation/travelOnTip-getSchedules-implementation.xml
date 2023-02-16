@@ -27,7 +27,7 @@ payload map(value,index)->{
         "locationCode": value.tolocation
       },
       "originLocation": {
-        "locationCode": value.tolocation
+        "locationCode": value.fromlocation
       }
     }
   
