@@ -10,7 +10,7 @@
                 <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:error-response>
         </http:listener>
-        <apikit:router config-ref="retrievetravelontiproutesandschedule-sapi-config"/>
+         <apikit:router config-ref="retrievetravelontiproutesandschedule-sapi-config"/>
         <error-handler ref="globalErrorHandlerError_Handler">
            
 		 

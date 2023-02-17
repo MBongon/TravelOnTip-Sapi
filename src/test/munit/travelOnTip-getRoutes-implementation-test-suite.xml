@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="travelOnTip-getRoutes-implementation-test-suite.xml" />
+	<munit:test name="travelOnTip-getRoutes-implementation-test-suite-travelOnTip-getRoutes-implementationSub_FlowTest" doc:id="56ed3b84-4c49-49a9-96e9-6cd8cdd36529" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="0a1311d0-4a12-4961-ba1a-269aa675d4c0" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="74c368fb-7a8e-4d7c-93cc-9288c7112657" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value='#[{"routes":[{"orginLocation.locationCode":"BEN-SG","destinationLocation.locationCode":"KLG-MY"}]}]' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit-tools:spy doc:name="Spy" doc:id="bf1afed1-8452-4b4e-8af3-abef217e04cf" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="74c368fb-7a8e-4d7c-93cc-9288c7112657" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:before-call >
+					<logger level="INFO" doc:name="Logger" doc:id="3ec9e2fb-c6f7-45d7-948e-620449cf1cfe" message="#[payload]"/>
+					<munit-tools:assert-that doc:name="Assert that" doc:id="aac6a8bf-bd5d-4142-a43a-f887f2e93711" is="#[MunitTools::notNullValue()]" expression="#[payload]" message="Payload should be null before calling travelOnTip endpoint"/>
+				</munit-tools:before-call>
+				<munit-tools:after-call >
+					<logger level="INFO" doc:name="Logger" doc:id="b479c0bf-f157-4c3e-85bf-8c1371e37889" message="#[isEmpty(payload)]"/>
+					<munit-tools:assert-that doc:name="Assert that" doc:id="6f64a194-1a72-4f53-b9af-413ce251ccd6" is="#[MunitTools::notNullValue()]" message="Payload should not be null" expression="#[payload]"/>
+				</munit-tools:after-call>
+			</munit-tools:spy>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to travelOnTip-getRoutes-implementationSub_Flow" doc:id="9c1ba50e-5234-4ba4-a087-61dc4a2795f0" name="travelOnTip-getRoutes-implementationSub_Flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:verify-call doc:name="Verify call" doc:id="48cbb1e5-0ba1-4b28-9bf1-e4653130e0de" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="74c368fb-7a8e-4d7c-93cc-9288c7112657" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+			<munit-tools:assert-that doc:name="Assert that" doc:id="157a4cc4-a6c1-40a4-a33f-b72b8e8f481f" is='#[MunitTools::equalTo( [{"transportCompany": "travelOnTip","orginLocation.locationCode":"BEN-SG","destinationLocation.locationCode":"KLG-MY"}] )]'/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="travelOnTip-getRoutes-implementation-test-suite-travelOnTip-getRoutes-implementationSub_FlowTest1" doc:id="ed1d0509-72cd-4f7a-8364-c313bbdb843f" description="Test" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="2b8565b4-6905-4329-8376-5ed38a981267" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="74c368fb-7a8e-4d7c-93cc-9288c7112657" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value='#["" as Binary]' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to travelOnTip-getRoutes-implementationSub_Flow" doc:id="81a5e599-1bb3-402b-9fce-aab3d6a8c456" name="travelOnTip-getRoutes-implementationSub_Flow" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="281c79e6-6d05-440a-a341-78b09a334171" message="getRoutes flow should return empty array for invalid requests" is="#[MunitTools::equalTo([])]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
