@@ -20,14 +20,14 @@ output application/json
 ---
 payload map(value,index)->{
 	 
-    "availableSeats": value.availableseat,
-    "departureDateTime": value.departuredatetime,
+    "availableSeats": value.availableSeats,
+    "departureDateTime": value.departureDateTime,
     "travelRoute": {
       "destinationLocation": {
-        "locationCode": value.tolocation
+        "locationCode": value.toLocation
       },
       "originLocation": {
-        "locationCode": value.fromlocation
+        "locationCode": value.fromLocation
       }
     }
   
