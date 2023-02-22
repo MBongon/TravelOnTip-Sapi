@@ -12,8 +12,6 @@
         </http:listener>
          <apikit:router config-ref="retrievetravelontiproutesandschedule-sapi-config"/>
         <error-handler ref="globalErrorHandlerError_Handler">
-           
-		 
         </error-handler>
     </flow>
     <flow name="retrievetravelontiproutesandschedule-sapi-console">
