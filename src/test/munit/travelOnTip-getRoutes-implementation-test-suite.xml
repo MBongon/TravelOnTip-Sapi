@@ -41,7 +41,7 @@
 					<munit-tools:with-attribute whereValue="74c368fb-7a8e-4d7c-93cc-9288c7112657" attributeName="doc:id" />
 				</munit-tools:with-attributes>
 			</munit-tools:verify-call>
-			<munit-tools:assert-that doc:name="Assert that" doc:id="157a4cc4-a6c1-40a4-a33f-b72b8e8f481f" is='#[MunitTools::equalTo( [{"transportCompany": "travelOnTip","orginLocation.locationCode":"BEN-SG","destinationLocation.locationCode":"KLG-MY"}] )]'/>
+			<munit-tools:assert-that doc:name="Assert that" doc:id="157a4cc4-a6c1-40a4-a33f-b72b8e8f481f" is='#[MunitTools::equalTo( [{"transportCompany": "travelOnTip","originLocation.locationCode":"BEN-SG","destinationLocation.locationCode":"KLG-MY"}] )]'/>
 		</munit:validation>
 	</munit:test>
 	<munit:test name="travelOnTip-getRoutes-implementation-test-suite-travelOnTip-getRoutes-implementationSub_FlowTest1" doc:id="ed1d0509-72cd-4f7a-8364-c313bbdb843f" description="Test" >
